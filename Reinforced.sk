@@ -1,0 +1,73 @@
+#Copyright Coded by NazunaIsSilly
+#Dm Her if you find Bugs or need help
+
+on death of a warden:
+    drop {Reinforced_Sculk} at victim's location    
+
+on load:
+    set {Reinforced_Sculk} to Echo shard named "<#8B7946>Reinforced Sculk" with lore "&9this item can make reinforced Weapons"
+    set {Sculk_Sword} to netherite sword named "&3Sculk Sword"
+
+on load:
+    register new smithing transform recipe:
+        id: "sculk:sword"
+        result: {Sculk_Sword}
+        template: sculk catalyst
+        base: diamond sword
+        addition: {Reinforced_Sculk}
+
+on right click:
+	if name of player's held item is "&3Sculk Sword":
+		player isn't sneaking:
+			if {ability1::%player%} isn't true:
+				set {ability1::%player%} to true
+				set {ability11::%player%} to 35
+				SonicBoom(player)
+				play sound "entity.warden.sonic_boom" with volume 20 and pitch 1 at player
+
+
+
+function SonicBoom(p: player): 
+    set {_pl} to location of {_p}
+    loop 20 times:
+        wait 1 tick
+        set {_amm} to loop-iteration
+        set {_loc} to location {_amm} blocks infront and 2 above {_pl}
+        draw 1 of sonic boom at {_loc}
+        loop all entities in radius 3.8 around {_loc}:
+            if loop-entity is not {_p}:
+                damage loop-entity by 4
+
+command /SculkSword:
+	permission: op
+	trigger:
+		give player {Sculk_Sword}
+
+command /ReinforcedSculk:
+	permission: op
+	trigger:
+		give player {Reinforced_Sculk}
+    
+every 20 ticks:
+    loop all players:
+        if {ability1::%loop-player%} is true:
+            remove 1 from {ability11::%loop-player%}
+            if {ability11::%loop-player%} < 1:
+                clear {ability1::%loop-player%}
+
+every 20 ticks:
+	loop all players:
+		if name of loop-player's held item is "&3Sculk Sword":
+			if {ability1::%loop-player%} isn't true:
+				send action bar "&aReady!" to loop-player
+
+every 20 ticks:
+	loop all players:
+		if name of loop-player's held item is "&3Sculk Sword":
+			if {ability1::%loop-player%} is true:
+				send action bar "&e&l⚡ &c%{ability11::%loop-player%}%ѕ" to loop-player
+
+command cooldown:
+	permission: op
+	trigger:
+		set {ability11::%player%} to 0
