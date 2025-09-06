@@ -6,7 +6,7 @@ on death of a warden:
 
 on load:
     set {Reinforced_Sculk} to Echo shard named "<#8B7946>Reinforced Sculk" with lore "&9this item can make reinforced Weapons"
-    set {Sculk_Sword} to netherite sword named "&3Sculk Sword"
+    set {Sculk_Sword} to netherite sword named "&3Sculk Sword" with lore "&dRight Click", "&7To shoot a sonic boom", "", "&cCooldown 35s"
 
 on load:
     register new smithing transform recipe:
@@ -70,4 +70,5 @@ every 20 ticks:
 command cooldown:
 	permission: op
 	trigger:
+
 		set {ability11::%player%} to 0
