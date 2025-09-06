@@ -66,12 +66,13 @@ every 20 ticks:
 	loop all players:
 		if name of loop-player's held item is "&3Sculk Sword":
 			if {ability1::%loop-player%} is true:
-				send action bar "&e&l⚡ &c%{ability11::%loop-player%}%ѕ" to loop-player
+				send action bar "&c%{ability11::%loop-player%}%ѕ" to loop-player
 
 command cooldown:
 	permission: op
 	trigger:
 
 		set {ability11::%player%} to 0
+
 
 
