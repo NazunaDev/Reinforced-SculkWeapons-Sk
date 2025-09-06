@@ -1,5 +1,6 @@
 #Copyright Coded by NazunaIsSilly
-#Dm Her if you find Bugs or need help
+#Dm Her if you find Bugs or need help on dc
+#Her username is nazunaissilly so dm her if you bugs
 
 on death of a warden:
     drop {Reinforced_Sculk} at victim's location    
@@ -72,3 +73,4 @@ command cooldown:
 	trigger:
 
 		set {ability11::%player%} to 0
+
