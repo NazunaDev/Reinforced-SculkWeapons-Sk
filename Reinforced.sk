@@ -24,7 +24,7 @@ on right click:
 				set {ability1::%player%} to true
 				set {ability11::%player%} to 35
 				SonicBoom(player)
-				play sound "entity.warden.sonic_boom" with volume 20 and pitch 1 at player
+				play sound "entity.warden.sonic_boom" with volume 5 and pitch 1 at player
 
 
 
@@ -73,4 +73,5 @@ command cooldown:
 	trigger:
 
 		set {ability11::%player%} to 0
+
 
